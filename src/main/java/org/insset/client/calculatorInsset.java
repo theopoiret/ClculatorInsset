@@ -21,7 +21,6 @@ public class calculatorInsset implements EntryPoint {
 
         History.addValueChangeHandler(new HistoryListener());
         History.fireCurrentHistoryState();
-
-//        RootPanel.get().add(new CalculatorPresenter());
+     
     }
 }
