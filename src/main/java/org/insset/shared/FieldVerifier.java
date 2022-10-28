@@ -1,5 +1,7 @@
 package org.insset.shared;
 
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -73,38 +75,34 @@ public class FieldVerifier {
 
     public static boolean isValidRoman(String nbr) {
         //Implement your code
-        nbr.toUpperCase();
+         nbr.toUpperCase();
         char i='I',v='V',x='X',l='L',c='C',d='D',m='M';
-        
+
         for(int j=0;j<nbr.length();j++)
         {
-            if((nbr.charAt(j)!=i)||(nbr.charAt(j)!=v)||(nbr.charAt(j)!=x)||
-                (nbr.charAt(j)!=l)||(nbr.charAt(j)!=c)||(nbr.charAt(j)!=d)||
-                (nbr.charAt(j)!=m))
+            if(!((nbr.charAt(j)==i)||(nbr.charAt(j)==v)||(nbr.charAt(j)==x)||
+            (nbr.charAt(j)==l)||(nbr.charAt(j)==c)||(nbr.charAt(j)==d)||
+            (nbr.charAt(j)==m)))
             {
                return false;
             }
 
         }
-           
-    return true; 
+                return true; 
         
     }
 
     public static boolean isValidDate(String date) {
-        //Implement your code
-        String pattern ="dd/MM/yyyy";
-          try {
-              
-            Date simple = new SimpleDateFormat(pattern).parse(date);
-            Format format = new SimpleDateFormat(pattern);
-             
-            if (!date.equals(format.format(simple)))
-                return false;
+        String[] items= date.split("/");
 
-            return true;
-        } catch(ParseException e) {
-            return false;
+        if(items[0].length() <= 2 && items[0].length() > 0 && Integer.parseInt(items[0]) <= 31 ) {
+            if(items[1].length() <= 2 && items[1].length() > 0 && Integer.parseInt(items[1]) <= 12 ){
+                if(items[2].length() == 4 ){
+                    return true;
+                }
+            }
         }
+
+        return false;
     }
 }
