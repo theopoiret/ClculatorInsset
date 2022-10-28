@@ -1,5 +1,6 @@
 package org.insset.shared;
 
+
 /**
  * <p>
  * FieldVerifier validates that the name the user enters is valid.
@@ -61,8 +62,25 @@ public class FieldVerifier {
         return true;
     }
 
-    public static boolean isValidDate(String date) {
-        //Implement your code
-        return true;
+    public static boolean isValidDate( String dateStr ) {
+        int[] date;
+
+        try {
+            date = DateUtils.convertDateStringToIntArray(dateStr);
+        }
+        catch (Exception e) {
+            return false;
+        }
+
+        return date.length == 3 && date[0] >= 1 && date[0] <= 31 && date[1] >= 1 && date[1] <= 12 && date[2] >= 0 && date[2] <= 2000;
     }
+    
+    public static boolean isValidEnteredPrice( int price ) {
+        return price >= 0 && price <= 10000;
+    }
+
+    public static boolean isValidPercentage( int percentage ) {
+        return percentage > 0 && percentage <= 100;
+    }
+
 }
