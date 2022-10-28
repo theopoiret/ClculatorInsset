@@ -82,5 +82,9 @@ public class FieldVerifier {
     public static boolean isValidPercentage( int percentage ) {
         return percentage > 0 && percentage <= 100;
     }
+    
+    public static boolean isValidDivisionOperands(int dividend, int diviser) {
+        return dividend >= 0 && dividend <= 10000 & diviser > 0 && diviser <= 10000;
+    }
 
 }

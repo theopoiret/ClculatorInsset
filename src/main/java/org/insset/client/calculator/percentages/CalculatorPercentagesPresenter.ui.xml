@@ -1,0 +1,85 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:menu="urn:import:org.insset.client.menu">
+
+    <g:HTMLPanel>
+        <menu:Menu ui:field="menu"/>
+
+        <h1>Projet de mise en pratique Scrum</h1>
+
+        <div class="bs-section">
+            <g:FlowPanel>
+                <g:FlowPanel>
+                    <g:Label>
+                        Calculer un prix apres réduction
+                    </g:Label>
+                </g:FlowPanel>
+
+                <g:FlowPanel>
+                    <g:TextBox ui:field="priceBeforeDiscount" text="Prix"/>
+                    <g:TextBox ui:field="discountPercentage1" text="Réduction"/>
+                    <g:SubmitButton ui:field="boutonFinalPrice"
+                                    text="Calculer"/>
+                </g:FlowPanel>
+
+                <g:FlowPanel>
+                    <g:Label ui:field="errorLabelFinalPrice"></g:Label>
+                </g:FlowPanel>
+
+                <g:FlowPanel>
+                    <g:ResetButton ui:field="boutonClearFinalPrice" text="Clear"/>
+                </g:FlowPanel>
+            </g:FlowPanel>
+
+            <g:FlowPanel>
+            </g:FlowPanel>
+
+            <g:FlowPanel>
+                <g:FlowPanel>
+                    <g:Label>Calculer un prix avant remise</g:Label>
+                </g:FlowPanel>
+
+                <g:FlowPanel>
+                    <g:TextBox ui:field="finalPrice" text="Prix"/>
+                    <g:TextBox ui:field="discountPercentage2" text="Réduction"/>
+                    <g:SubmitButton ui:field="boutonBasePrice"
+                                    text="Calculer"/>
+                </g:FlowPanel>
+
+                <g:FlowPanel>
+                    <g:Label ui:field="errorBasePrice"></g:Label>
+                </g:FlowPanel>
+
+                <g:FlowPanel>
+                    <g:ResetButton ui:field="boutonClearBasePrice" text="Clear"/>
+                </g:FlowPanel>
+            </g:FlowPanel>
+
+            <g:FlowPanel>
+            </g:FlowPanel>
+
+            <g:FlowPanel>
+                <g:FlowPanel>
+                    <g:Label>Divison de deux entiers</g:Label>
+                </g:FlowPanel>
+
+                <g:FlowPanel>
+                    <g:TextBox ui:field="dividend" text="Entrer le dividende"/>
+                    <g:TextBox ui:field="diviser" text="Entrer le diviseur"/>
+                    <g:SubmitButton ui:field="boutonDivision" text="Diviser"/>
+                </g:FlowPanel>
+
+                <g:FlowPanel>
+                    <g:Label ui:field="errorLabelDivision"></g:Label>
+                </g:FlowPanel>
+
+                <g:FlowPanel>
+                    <g:ResetButton ui:field="boutonClearDivision" text="Clear"/>
+                </g:FlowPanel>
+            </g:FlowPanel>
+            <!--</g:Form>-->
+        </div>
+        <!-- E. Container Right -->
+
+    </g:HTMLPanel>
+</ui:UiBinder>
