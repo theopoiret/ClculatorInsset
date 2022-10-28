@@ -1,5 +1,6 @@
 package org.insset.shared;
 
+
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
 import java.text.Format;
@@ -91,7 +92,18 @@ public class FieldVerifier {
                 return true; 
         
     }
+    
+    public static boolean isValidEnteredPrice( int price ) {
+        return price >= 0 && price <= 10000;
+    }
 
+    public static boolean isValidPercentage( int percentage ) {
+        return percentage > 0 && percentage <= 100;
+    }
+    
+    public static boolean isValidDivisionOperands(int dividend, int diviser) {
+        return dividend >= 0 && dividend <= 10000 & diviser > 0 && diviser <= 10000;
+    }
     public static boolean isValidDate(String date) {
         String[] items= date.split("/");
 
@@ -104,5 +116,7 @@ public class FieldVerifier {
         }
 
         return false;
+
     }
+
 }
