@@ -1,6 +1,13 @@
 package org.insset.shared;
 
 
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * <p>
  * FieldVerifier validates that the name the user enters is valid.
@@ -52,15 +59,40 @@ public class FieldVerifier {
      * @param name the name to validate
      * @return true if valid, false if invalid
      */
-    public static boolean isValidDecimal(Integer nbr) {
+    public static boolean isValidDecimal(double nbr) {
         //Implement your code
-        return true;
+        int i;
+        i= (int)nbr;
+        
+        if(i==nbr)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public static boolean isValidRoman(String nbr) {
         //Implement your code
-        return true;
+        nbr=nbr.toUpperCase();
+        char i='I',v='V',x='X',l='L',c='C',d='D',m='M';
+
+        for(int j=0;j<nbr.length();j++)
+        {
+            if(!((nbr.charAt(j)==i)||(nbr.charAt(j)==v)||(nbr.charAt(j)==x)||
+            (nbr.charAt(j)==l)||(nbr.charAt(j)==c)||(nbr.charAt(j)==d)||
+            (nbr.charAt(j)==m)))
+            {
+               return false;
+            }
+
+        }
+                return true; 
+        
     }
+
 
     public static boolean isValidDate( String dateStr ) {
         int[] date;
@@ -85,6 +117,20 @@ public class FieldVerifier {
     
     public static boolean isValidDivisionOperands(int dividend, int diviser) {
         return dividend >= 0 && dividend <= 10000 & diviser > 0 && diviser <= 10000;
+
+    public static boolean isValidDate(String date) {
+        String[] items= date.split("/");
+
+        if(items[0].length() <= 2 && items[0].length() > 0 && Integer.parseInt(items[0]) <= 31 ) {
+            if(items[1].length() <= 2 && items[1].length() > 0 && Integer.parseInt(items[1]) <= 12 ){
+                if(items[2].length() == 4 ){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+
     }
 
 }
