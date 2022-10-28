@@ -75,7 +75,7 @@ public class FieldVerifier {
 
     public static boolean isValidRoman(String nbr) {
         //Implement your code
-         nbr.toUpperCase();
+        nbr=nbr.toUpperCase();
         char i='I',v='V',x='X',l='L',c='C',d='D',m='M';
 
         for(int j=0;j<nbr.length();j++)
