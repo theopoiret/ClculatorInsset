@@ -64,10 +64,6 @@ public class PercentagesConverterTest {
     public void testDivideWithDivisorZero() {
         instance.divide(100., 0.);
     }
-    
-    @org.junit.Test(expected = IllegalArgumentException.class)
-    public void testDivideWithFloat() {
-        instance.divide(4.4, 2.2);
-    }
+
     
 }
