@@ -59,9 +59,9 @@ public class RomanConverterServiceImplTest {
     @Test
     public void testConvertRomanToArabe() {
         //given
-        String romanNumber = "XX";
+        String romanNumber = "MDCLXVI";
         RomanConverterServiceImpl instance = new RomanConverterServiceImpl();
-        Integer expResult = 20;
+        Integer expResult = 1666;
         //when
         Integer result = instance.convertRomanToArabe(romanNumber);
         //then

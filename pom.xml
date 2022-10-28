@@ -77,12 +77,38 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>pl.pragmatists</groupId>
+    	<artifactId>JUnitParams</artifactId>
+    	<version>1.0.2</version>
+    	<scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
+  <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.6.0.1398</version>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.7.0.201403182114</version>
+          
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <!-- Output classes directly into the webapp, so that IDEs and "mvn process-classes" update them in DevMode -->
     <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
 
@@ -111,30 +137,36 @@
           </modules>
         </configuration>
       </plugin>
-      <plugin>
-          <groupId>org.sonarsource.scanner.maven</groupId>
-          <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.6.0.1398</version>
-        </plugin>
-          <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <executions>
-              <execution>
-              <id>prepare-agent</id>
-                <goals>
-                  <goal>prepare-agent</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>report</id>
-                <goals>
-                <goal>report</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
+    </plugins>
   </build>
-
+	<profiles>
+    	<profile>
+      	<id>coverage</id>
+      	<activation>
+        	<activeByDefault>true</activeByDefault>
+      	</activation>
+      	<build>
+        	<plugins>
+          	<plugin>
+            	<groupId>org.jacoco</groupId>
+            	<artifactId>jacoco-maven-plugin</artifactId>
+            	<executions>
+              	<execution>
+                	<id>prepare-agent</id>
+                	<goals>
+                  	<goal>prepare-agent</goal>
+                	</goals>
+              	</execution>
+              	<execution>
+                	<id>report</id>
+                	<goals>
+                  	<goal>report</goal>
+                	</goals>
+              	</execution>
+            	</executions>
+          	</plugin>
+        	</plugins>
+      	</build>
+    	</profile>
+  	</profiles>
 </project>
