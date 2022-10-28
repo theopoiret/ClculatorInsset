@@ -117,7 +117,7 @@ public class FieldVerifier {
     
     public static boolean isValidDivisionOperands(int dividend, int diviser) {
         return dividend >= 0 && dividend <= 10000 & diviser > 0 && diviser <= 10000;
-
+    }
     public static boolean isValidDate(String date) {
         String[] items= date.split("/");
 
