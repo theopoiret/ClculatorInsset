@@ -58,7 +58,7 @@ public class FieldVerifier {
      * @param name the name to validate
      * @return true if valid, false if invalid
      */
-    public static boolean isValidDecimal(Integer nbr) {
+    public static boolean isValidDecimal(double nbr) {
         //Implement your code
         int i;
         i= (int)nbr;
