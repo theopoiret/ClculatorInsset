@@ -93,17 +93,6 @@ public class FieldVerifier {
         
     }
 
-
-    public static boolean isValidDate( String dateStr ) {
-        int[] date;
-
-        try {
-            date = DateUtils.convertDateStringToIntArray(dateStr);
-        }
-        catch (Exception e) {
-            return false;
-        }
-
         return date.length == 3 && date[0] >= 1 && date[0] <= 31 && date[1] >= 1 && date[1] <= 12 && date[2] >= 0 && date[2] <= 2000;
     }
     
