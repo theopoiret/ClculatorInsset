@@ -92,9 +92,6 @@ public class FieldVerifier {
                 return true; 
         
     }
-
-        return date.length == 3 && date[0] >= 1 && date[0] <= 31 && date[1] >= 1 && date[1] <= 12 && date[2] >= 0 && date[2] <= 2000;
-    }
     
     public static boolean isValidEnteredPrice( int price ) {
         return price >= 0 && price <= 10000;
