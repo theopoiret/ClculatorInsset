@@ -107,8 +107,8 @@ public class FieldVerifier {
     public static boolean isValidDate(String date) {
         String[] items= date.split("/");
 
-        if(items[0].length() <= 2 && items[0].length() > 0 && Integer.parseInt(items[0]) <= 31 ) {
-            if(items[1].length() <= 2 && items[1].length() > 0 && Integer.parseInt(items[1]) <= 12 ){
+        if(items[0].length() <= 2 && items[0].length() > 0 && Integer.parseInt(items[0]) <= 31 && Integer.parseInt(items[0]) > 0) {
+            if(items[1].length() <= 2 && items[1].length() > 0 && Integer.parseInt(items[1]) <= 12 && Integer.parseInt(items[1]) > 0 ){
                 if(items[2].length() == 4 ){
                     return true;
                 }

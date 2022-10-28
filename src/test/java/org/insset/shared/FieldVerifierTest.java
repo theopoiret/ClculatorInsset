@@ -159,4 +159,193 @@ public class FieldVerifierTest {
         //then
         assertEquals(expResult, result);
     }
+    /**
+     * Test of testisValidEnteredPrice method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidEnteredPrice() {
+         //given
+        int price = 78;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = true;
+
+        //when
+        boolean result = instance.isValidEnteredPrice(price);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of testisValidEnteredPrice method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidEnteredPriceFalse() {
+         //given
+        int price = -5;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = false;
+
+        //when
+        boolean result = instance.isValidEnteredPrice(price);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of testisValidEnteredPrice method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidEnteredPriceFalse2() {
+         //given
+        int price = 100000;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = false;
+
+        //when
+        boolean result = instance.isValidEnteredPrice(price);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of testisValidPercentage method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidPercentage() {
+         //given
+        int price = 78;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = true;
+
+        //when
+        boolean result = instance.isValidPercentage(price);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of testisValidEnteredPrice method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidPercentageFalse() {
+         //given
+        int price = -5;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = false;
+
+        //when
+        boolean result = instance.isValidPercentage(price);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of testisValidEnteredPrice method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidPercentageFalse2() {
+         //given
+        int price = 500;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = false;
+
+        //when
+        boolean result = instance.isValidPercentage(price);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * 
+    public static boolean isValidDivisionOperands(int dividend, int diviser) {
+        return dividend >= 0 && dividend <= 10000 & diviser > 0 && diviser <= 10000;
+    }
+     */
+    /**
+     * Test of testisValidDivisionOperands method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidDivisionOperands() {
+         //given
+        int diviser = 500;
+        int dividend = 500;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = true;
+
+        //when
+        boolean result = instance.isValidDivisionOperands(dividend,diviser);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of testisValidDivisionOperands method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidDivisionOperandsFalse() {
+         //given
+        int diviser = -5;
+        int dividend = 500;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = false;
+
+        //when
+        boolean result = instance.isValidDivisionOperands(dividend,diviser);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of testisValidDivisionOperands method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidDivisionOperandsFalse2() {
+         //given
+        int diviser = 50000;
+        int dividend = 500;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = false;
+
+        //when
+        boolean result = instance.isValidDivisionOperands(dividend,diviser);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of testisValidDivisionOperands method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidDivisionOperandsFalse3() {
+         //given
+        int diviser = 500;
+        int dividend = -5;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = false;
+
+        //when
+        boolean result = instance.isValidDivisionOperands(dividend,diviser);
+
+        //then
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of testisValidEnteredPrice method, of class FieldVerifier.
+     */
+    @Test
+    public void testisValidDivisionOperandsFalse4() {
+         //given
+        int diviser = 500;
+        int dividend = 50000;
+        FieldVerifier instance = new FieldVerifier();
+        boolean expResult = false;
+
+        //when
+        boolean result = instance.isValidDivisionOperands(dividend,diviser);
+
+        //then
+        assertEquals(expResult, result);
+    }
 }

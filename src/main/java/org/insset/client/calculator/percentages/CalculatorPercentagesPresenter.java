@@ -127,86 +127,109 @@ public class CalculatorPercentagesPresenter extends Composite {
      * Call server
      */
     private void calculateFinalPrice() {
-        final int priceBeforeDiscountValue = Integer.parseInt(priceBeforeDiscount.getText());
-        final int discountPercentage1Value = Integer.parseInt(discountPercentage1.getText());
 
-        if (!FieldVerifier.isValidEnteredPrice(priceBeforeDiscountValue) || !FieldVerifier.isValidPercentage(discountPercentage1Value)) {
+        try {
+            final int priceBeforeDiscountValue = Integer.parseInt(priceBeforeDiscount.getText());
+            final int discountPercentage1Value = Integer.parseInt(discountPercentage1.getText());
+
+            if (!FieldVerifier.isValidEnteredPrice(priceBeforeDiscountValue) || !FieldVerifier.isValidPercentage(discountPercentage1Value)) {
+                errorLabelFinalPrice.addStyleName("serverResponseLabelError");
+                errorLabelFinalPrice.setText("Format incorect");
+                return;
+            }
+            service.calculateFinalPrice(priceBeforeDiscountValue, discountPercentage1Value, new AsyncCallback<Double[]>() {
+                public void onFailure(Throwable caught) {
+                    // Show the RPC error message to the user
+                    // Window.alert(SERVER_ERROR);
+                }
+
+                public void onSuccess(Double[] result) {
+                    errorLabelFinalPrice.setText(" ");
+                    new DialogBoxInssetPresenter(
+                            "Calcul du prix final",
+                            "Prix avant réduction: " + ((double) Math.round(priceBeforeDiscountValue * 100) / 100)  + "€ | % de réduction: " + ((double) Math.round(discountPercentage1Value * 100) / 100) +"%",
+                            "Prix apres réduction: " + ((double) Math.round(result[0] * 100) / 100)  + "€, vous avez economiser " + ((double) Math.round(result[1] * 100) / 100) +"€"
+                    );
+                }
+            });
+        } catch (NumberFormatException e) {
             errorLabelFinalPrice.addStyleName("serverResponseLabelError");
             errorLabelFinalPrice.setText("Format incorect");
             return;
         }
-        service.calculateFinalPrice(priceBeforeDiscountValue, discountPercentage1Value, new AsyncCallback<Double[]>() {
-            public void onFailure(Throwable caught) {
-                // Show the RPC error message to the user
-                // Window.alert(SERVER_ERROR);
-            }
-
-            public void onSuccess(Double[] result) {
-                errorLabelFinalPrice.setText(" ");
-                new DialogBoxInssetPresenter(
-                        "Calcul du prix final",
-                        "Prix avant réduction: " + priceBeforeDiscountValue + "€ | % de réduction: " + discountPercentage1Value +"%",
-                        "Prix apres réduction: " + result[0] + "€, vous avez economiser " + result[1]+"€"
-                );
-            }
-        });
     }
 
     /**
      * Call server
      */
     private void calculateBasePrice() {
-        final int finalPriceValue = Integer.parseInt(finalPrice.getText());
-        final int discountPercentage2Value = Integer.parseInt(discountPercentage2.getText());
 
-        if (!FieldVerifier.isValidEnteredPrice(finalPriceValue) || !FieldVerifier.isValidPercentage(discountPercentage2Value)) {
+        try {
+            final int finalPriceValue = Integer.parseInt(finalPrice.getText());
+            final int discountPercentage2Value = Integer.parseInt(discountPercentage2.getText());
+
+            if (!FieldVerifier.isValidEnteredPrice(finalPriceValue) || !FieldVerifier.isValidPercentage(discountPercentage2Value)) {
+                errorBasePrice.addStyleName("serverResponseLabelError");
+                errorBasePrice.setText("Format incorect");
+                return;
+            }
+            service.calculateBasePrice(finalPriceValue, discountPercentage2Value, new AsyncCallback<Double[]>() {
+                public void onFailure(Throwable caught) {
+                    // Show the RPC error message to the user
+                    // Window.alert(SERVER_ERROR);
+                }
+
+                public void onSuccess(Double[] result) {
+                    errorBasePrice.setText(" ");
+                    new DialogBoxInssetPresenter(
+                            "Calcul du prix avant réduction",
+                            "Prix avant réduction: " + ((double) Math.round(finalPriceValue * 100) / 100)  + "€, % de réduction: " + ((double) Math.round(discountPercentage2Value * 100) / 100) +"€",
+                            "Prix apres réduction: " + ((double) Math.round(result[0] * 100) / 100)  + "€, economie: " + ((double) Math.round(result[1] * 100) / 100) + "€"
+                    );
+                }
+            });
+
+        } catch (NumberFormatException e) {
             errorBasePrice.addStyleName("serverResponseLabelError");
             errorBasePrice.setText("Format incorect");
             return;
         }
-        service.calculateBasePrice(finalPriceValue, discountPercentage2Value, new AsyncCallback<Double[]>() {
-            public void onFailure(Throwable caught) {
-                // Show the RPC error message to the user
-                // Window.alert(SERVER_ERROR);
-            }
 
-            public void onSuccess(Double[] result) {
-                errorBasePrice.setText(" ");
-                new DialogBoxInssetPresenter(
-                        "Calcul du prix avant réduction",
-                        "Prix avant réduction: " + finalPriceValue + "€, % de réduction: " + discountPercentage2Value+"€",
-                        "Prix apres réduction: " + result[0] + "€, economie: " + result[1] + "€"
-                );
-            }
-        });
     }
 
     /**
      * Call server
      */
     private void divide() {
-        final int dividendValue = Integer.parseInt(dividend.getText());
-        final int diviserValue = Integer.parseInt(diviser.getText());
 
-        if (!FieldVerifier.isValidDivisionOperands(dividendValue, diviserValue)) {
+        try {
+            final int dividendValue = Integer.parseInt(dividend.getText());
+            final int diviserValue = Integer.parseInt(diviser.getText());
+
+            if (!FieldVerifier.isValidDivisionOperands(dividendValue, diviserValue)) {
+                errorLabelDivision.addStyleName("serverResponseLabelError");
+                errorLabelDivision.setText("Valeurs non valides");
+                return;
+            }
+            service.divide(dividendValue, (double) diviserValue, new AsyncCallback<Double>() {
+                public void onFailure(Throwable caught) {
+                    // Show the RPC error message to the user
+                    // Window.alert(SERVER_ERROR);
+                }
+
+                public void onSuccess(Double result) {
+                    errorLabelDivision.setText(" ");
+                    new DialogBoxInssetPresenter(
+                            "Division de 2 entiers",
+                            dividendValue + " / " + diviserValue,
+                            Double.toString(result)
+                    );
+                }
+            });
+        } catch (NumberFormatException e) {
             errorLabelDivision.addStyleName("serverResponseLabelError");
-            errorLabelDivision.setText("Valeurs non valides");
+            errorLabelDivision.setText("Format incorect");
             return;
         }
-        service.divide(dividendValue, (double) diviserValue, new AsyncCallback<Double>() {
-            public void onFailure(Throwable caught) {
-                // Show the RPC error message to the user
-                // Window.alert(SERVER_ERROR);
-            }
-
-            public void onSuccess(Double result) {
-                errorLabelDivision.setText(" ");
-                new DialogBoxInssetPresenter(
-                        "Division de 2 entiers",
-                        dividendValue + " / " + diviserValue,
-                        Double.toString(result)
-                );
-            }
-        });
     }
 }
